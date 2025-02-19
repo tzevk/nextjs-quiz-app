@@ -40,8 +40,8 @@ const RegistrationForm = () => {
       const res = await axios.post("/api/users", formData);
       if (res.status === 200) {
         toast({ title: "All the best for your quiz!" });
-        localStorage.setItem("users", JSON.stringify(formData));
-        router.push("/SITQUIZ");
+        localStorage.setItem("user", JSON.stringify(formData)); // Store user data
+        router.push("/instructions"); // Redirect to Instructions Page
       }
     } catch (error) {
       toast({ title: JSON.stringify(error?.response?.data?.error || error.message), variant: "destructive" });
