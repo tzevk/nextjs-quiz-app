@@ -11,15 +11,30 @@ let cached = global.mongoose || { conn: null, promise: null };
 async function dbConnect() {
   if (cached.conn) return cached.conn;
   
-  if (!cached.promise) {
-    cached.promise = mongoose.connect(MONGODB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    }).then((mongoose) => mongoose);
+  try {
+    if (!cached.promise) {
+      const opts = {
+        bufferCommands: false,
+        serverSelectionTimeoutMS: 5000, // Timeout after 5s instead of 30s
+      };
+      
+      cached.promise = mongoose.connect(MONGODB_URI, opts)
+        .then((mongoose) => {
+          console.log('Connected to MongoDB');
+          return mongoose;
+        })
+        .catch((error) => {
+          console.error('MongoDB connection error:', error);
+          throw error;
+        });
+    }
+    
+    cached.conn = await cached.promise;
+    return cached.conn;
+  } catch (error) {
+    console.error('Failed to connect to MongoDB:', error);
+    throw error;
   }
-  
-  cached.conn = await cached.promise;
-  return cached.conn;
 }
 
 export default dbConnect;
