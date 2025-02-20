@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import clientPromise from "../../../utils/dbConnect";
+import clientPromise from "../../../utils/db";
 
 const client = await clientPromise;
 const db = client.db("SITQUIZ");
