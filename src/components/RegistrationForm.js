@@ -41,7 +41,7 @@ const RegistrationForm = () => {
       if (res.status === 200) {
         toast({ title: "All the best for your quiz!" });
         localStorage.setItem("user", JSON.stringify(formData)); // Store user data
-        router.push("/instructions"); // Redirect to Instructions Page
+        router.push("/quiz"); // Redirect to Instructions Page
       }
     } catch (error) {
       toast({ title: JSON.stringify(error?.response?.data?.error || error.message), variant: "destructive" });

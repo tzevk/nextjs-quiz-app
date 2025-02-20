@@ -1,4 +1,4 @@
-import dbConnect from '../../../utils/dbConnect';
+import dbConnect from '../../../utils/db';
 import User from '../../../../models/User';
 import { NextResponse } from 'next/server';
 
