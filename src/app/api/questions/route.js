@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import db from "../../../utils/db"; 
 import clientPromise from "../../../utils/db";
 
 const client = await clientPromise;
