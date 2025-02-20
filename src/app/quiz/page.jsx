@@ -116,7 +116,7 @@ const Page = () => {
         <Image src="/backdrop.png" width="250" height="250" alt="Quiz Logo" className="mb-4" />
         <div className="bg-white shadow-xl rounded-3xl p-10 max-w-lg text-center border border-gray-300">
           
- <h1 className="text-gray-900 font-extrabold text-4xl mb-4 tracking-wide flex items-center justify-center">
+        <h1 className="text-gray-900 font-extrabold text-4xl mb-4 tracking-wide flex items-center justify-center">
     📜 Instructions
   </h1>
 

@@ -1,40 +1,35 @@
-import dbConnect from '../../../utils/db';
-import User from '../../../../models/User';
-import { NextResponse } from 'next/server';
+import clientPromise from "../../../utils/db";
 
-export async function POST(req) {
+const client = await clientPromise;
+const db = client.db("SITQUIZ");
+export const POST = async (req) => {
   try {
-    await dbConnect();
-    const body = await req.json();
-    const { name, contact, type } = body;
-
-    if (!name || !contact || !type) {
-      return NextResponse.json(
-        { error: 'All fields are required' },
+    const data = await req.json();
+    let user = await db
+      .collection("users")
+      .find({ contact: data.contact })
+      .toArray();
+    if (user.length > 0) {
+      return Response.json(
+        { error: "User exists with that contact" },
         { status: 400 }
       );
     }
+    await db
+      .collection("users")
+      .insertOne({ ...data, score: 0, submitTime: 120 });
 
-    const newUser = new User({ name, contact, type });
-    await newUser.save();
-    return NextResponse.json(newUser, { status: 200 });
+    return Response.json({ message: "Successful Registration" });
   } catch (error) {
-    return NextResponse.json(
-      { error: error.message },
-      { status: 500 }
-    );
+    return Response.json({ error }, { status: 500 });
   }
-}
-
-export async function GET() {
+};
+export const GET = async (req) => {
   try {
-    await dbConnect();
-    const users = await User.find({});
-    return NextResponse.json(users);
+    let users = await db.collection("users").find({}).toArray();
+
+    return Response.json({ users });
   } catch (error) {
-    return NextResponse.json(
-      { error: error.message },
-      { status: 500 }
-    );
+    return Response.json({ error: "Server Error" });
   }
-}
+};
