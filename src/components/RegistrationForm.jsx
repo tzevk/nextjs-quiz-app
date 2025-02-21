@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
-import Image from 'next/image'
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
@@ -21,6 +20,7 @@ const RegistrationForm = () => {
     type: "",
   });
   const router = useRouter();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -62,14 +62,11 @@ const RegistrationForm = () => {
   };
 
   return (
-    <div className="bg-white p-8 rounded-xl shadow-md w-1/3">
-      {/* <h2 className="text-xl font-semibold mb-4">Registration Form</h2> */}
+    <div className="bg-white p-8 md:p-10 rounded-3xl shadow-2xl w-full max-w-md border-2 border-gray-300">
       <form onSubmit={handleSubmit}>
+        {/* Name Field */}
         <div className="mb-4">
-          <Label
-            htmlFor="name"
-            className="block font-semibold mb-2 text-zinc-900"
-          >
+          <Label htmlFor="name" className="block font-bold text-zinc-900 mb-2 text-left">
             NAME:
           </Label>
           <Input
@@ -79,15 +76,14 @@ const RegistrationForm = () => {
             placeholder="Enter your name"
             value={formData.name}
             onChange={handleChange}
-            className="w-full px-4 py-2 border rounded placeholder:font-light"
+            className="w-full px-4 py-3 border-2 rounded-lg placeholder-gray-500 text-lg"
             required
           />
         </div>
+
+        {/* Phone Number Field */}
         <div className="mb-4">
-          <Label
-            htmlFor="contact"
-            className="block mb-2 font-semibold text-zinc-900"
-          >
+          <Label htmlFor="contact" className="block font-bold text-zinc-900 mb-2 text-left">
             PHONE NUMBER:
           </Label>
           <Input
@@ -97,27 +93,24 @@ const RegistrationForm = () => {
             placeholder="Enter your phone number"
             value={formData.contact}
             onChange={handleChange}
-            className="w-full px-4 py-2 border rounded placeholder:font-light"
+            className="w-full px-4 py-3 border-2 rounded-lg placeholder-gray-500 text-lg"
             required
           />
         </div>
+
+        {/* Selection Field */}
         <div className="mb-4">
-          <Label
-            htmlFor="occupation"
-            className="block mb-2 font-semibold text-zinc-900"
-          >
-            Are you:
+          <Label htmlFor="occupation" className="block font-bold text-zinc-900 mb-2 text-left">
+            ARE YOU:
           </Label>
           <Select
             required
-            onValueChange={(value) =>
-              setFormData((prev) => ({ ...prev, type: value }))
-            }
+            onValueChange={(value) => setFormData((prev) => ({ ...prev, type: value }))}
           >
-            <SelectTrigger className="rounded-md text-black">
+            <SelectTrigger className="w-full rounded-lg border-2 px-4 py-3 text-lg">
               <SelectValue placeholder="Select one" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="absolute z-50 mt-1 bg-white shadow-lg rounded-md border">
               <SelectItem className="bg-white" value="iti">
                 ITI Student
               </SelectItem>
@@ -126,12 +119,14 @@ const RegistrationForm = () => {
             </SelectContent>
           </Select>
         </div>
+
+        {/* Submit Button */}
         <div className="flex justify-center">
           <Button
             type="submit"
-            className="bg-blue-500 font-bold px-4 py-2 rounded-lg transition duration-300 mt-2"
+            className="bg-[#2A6BB5] hover:bg-[#23589b] text-white font-bold text-lg px-8 py-3 rounded-lg transition duration-300 flex items-center gap-2 shadow-md"
           >
-            Continue -&gt;
+            Continue →
           </Button>
         </div>
       </form>
