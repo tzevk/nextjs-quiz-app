@@ -43,50 +43,63 @@ const Leaderboard = () => {
   if (leaderboard.length === 0) return <Loading />;
 
   return (
-    <div className="w-full flex flex-col items-center justify-center bg-gray-50 p-10 overflow-hidden">
-      <h1 className="text-5xl font-extrabold text-gray-900 flex items-center gap-3 mb-8">
-        ⭐ <span className="text-[#2A6BB5]">LEADERBOARD</span> ⭐
-      </h1>
-      <div className="w-full max-w-4xl">
-  <Table className="bg-white shadow-2xl rounded-2xl overflow-hidden w-full border border-gray-300">
-    {/* Header */}
-    <TableHeader>
-  <TableRow className="bg-[#2A6BB5] text-white">
-    <TableHead className="text-center font-extrabold text-xl py-3 !text-white !opacity-100">
-      🏆 Rank
-    </TableHead>
-    <TableHead className="text-center font-extrabold text-xl py-3 !text-white !opacity-100">
-      👤 Name
-    </TableHead>
-    <TableHead className="text-center font-extrabold text-xl py-3 !text-white !opacity-100">
-      📊 Score
-    </TableHead>
-    <TableHead className="text-center font-extrabold text-xl py-3 !text-white !opacity-100">
-      ⏳ Time
-    </TableHead>
-    <TableHead className="text-center font-extrabold text-xl py-3 !text-white !opacity-100">
-      📝 Quizzes Attempted
-    </TableHead>
-  </TableRow>
-</TableHeader>
+    <div className="w-full flex flex-col items-center justify-center bg-[#FCE86C] p-10 min-h-screen">
+      {/* Header Section */}
+      <div className="bg-white shadow-lg rounded-xl p-6 flex flex-col items-center max-w-4xl w-full">
+      <div className="flex flex-row items-center justify-center w-full bg-white shadow-lg rounded-xl p-6 max-w-4xl">
+  <img src="/backdrop.png" alt="SIT Logo" className="h-29 md:h-24 lg:h-36 object-contain" /> 
+  <div className="ml-4 md:ml-6 lg:ml-8"> 
+    <h1 className="text-[#2A6BB5] italic font-extrabold text-4xl md:text-5xl">
+      SUVIDYA&apos;S
+    </h1>
+    <h1 className="text-[#2E3093] italic font-extrabold text-4xl md:text-5xl">
+      CHEMTECH QUIZ
+    </h1>
+  </div>
+</div>
 
-    {/* Body */}
-    <TableBody>
-      {leaderboard?.map((user, index) => (
-        <TableRow
-          key={user._id}
-          className={`text-lg font-medium ${index % 2 === 0 ? "bg-gray-100" : "bg-white"} focus:outline-none`}
-        >
-          <TableCell className="text-center p-4 font-bold text-gray-900">{index + 1}</TableCell>
-          <TableCell className="text-center p-4 text-gray-900">{user.name || "N/A"}</TableCell>
-          <TableCell className="text-center p-4 text-green-600 font-semibold">{user.score || 0}</TableCell>
-          <TableCell className="text-center p-4 text-gray-700">{convertTime(user.submitTime) || "0:00"}</TableCell>
-        </TableRow>
-      ))}
-    </TableBody>
-  </Table>
-</div>
-</div>
+        {/* Score & Win Banner */}
+        <p className="mt-4 text-lg md:text-2xl lg:text-3xl font-semibold text-white bg-[#2A6BB5] px-6 py-3 rounded-lg shadow-md w-full text-center">
+          🎉 SCORE AND WIN EXCITING PRIZES! 🏆
+        </p>
+
+        {/* Leaderboard Title */}
+        <h2 className="text-[#2A6BB5] text-2xl md:text-2xl lg:text-4xl font-bold mt-4 text-center">
+          LEADERBOARD
+        </h2>
+
+        {/* Leaderboard Table */}
+        <div className="w-full mt-6 overflow-hidden">
+          <Table className="bg-white shadow-xl rounded-xl overflow-hidden w-full border border-gray-300">
+            <TableHeader>
+              <TableRow className="bg-[#2A6BB5] text-white">
+                <TableHead className="text-center font-extrabold text-lg py-3">🏆 Rank</TableHead>
+                <TableHead className="text-center font-extrabold text-lg py-3">👤 Name</TableHead>
+                <TableHead className="text-center font-extrabold text-lg py-3">📊 Score</TableHead>
+                <TableHead className="text-center font-extrabold text-lg py-3">⏳ Time</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {leaderboard?.map((user, index) => (
+                <TableRow
+                  key={user._id}
+                  className={`text-lg font-medium ${
+                    index % 2 === 0 ? "bg-gray-100" : "bg-white"
+                  } focus:outline-none`}
+                >
+                  <TableCell className="text-center p-4 font-bold text-gray-900">{index + 1}</TableCell>
+                  <TableCell className="text-center p-4 text-gray-900 font-bold">{user.name || "N/A"}</TableCell>
+                  <TableCell className="text-center p-4 text-green-600 font-bold">{user.score || 0}</TableCell>
+                  <TableCell className="text-center p-4 text-gray-700">
+                    {convertTime(user.submitTime) || "0:00"}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+      </div>
+    </div>
   );
 };
 

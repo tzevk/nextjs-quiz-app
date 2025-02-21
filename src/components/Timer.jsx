@@ -1,8 +1,22 @@
 import { Button } from "../components/ui/button";
 import { cn } from "../lib/utils";
 import { Hourglass } from "react-loader-spinner";
+import { useEffect, useState } from "react";
 
 const Timer = ({ timeRemaining }) => {
+  const [flash, setFlash] = useState(false);
+
+  useEffect(() => {
+    if (timeRemaining <= 10) {
+      const interval = setInterval(() => {
+        setFlash((prev) => !prev);
+      }, 500); // Flash every 0.5s
+      return () => clearInterval(interval);
+    } else {
+      setFlash(false);
+    }
+  }, [timeRemaining]);
+
   const convertTime = (time) => {
     const minutes = Math.floor(time / 60);
     const seconds = time % 60;
@@ -10,35 +24,22 @@ const Timer = ({ timeRemaining }) => {
   };
 
   return (
-    <div className="flex items-center">
-      <Button
-        className={cn(
-          "w-28 h-[50px] font-semibold text-lg flex gap-2 justify-center items-center",
-          {
-            "bg-red-500 hover:bg-red-400 border-red-500 hover:border-red-400":
-              timeRemaining < 20,
-            "hover:bg-gray-200": timeRemaining > 20,
-          }
-        )}
-        variant="outline"
-      >
-        {/* <div className=""> */}
-        <Hourglass
-          visible={true}
-          height="120"
-          width="100"
-          ariaLabel="hourglass-loading"
-          colors={["#000", "#000"]}
-        />
-        {/* </div> */}
-        <p className="w-11">{convertTime(timeRemaining)}</p>
-      </Button>
-      {/* <Button onClick={() => localStorage.removeItem("timeRemaining")}>
-        clear
-      </Button>
-      <Button onClick={() => window.clearInterval(window.interval)}>
-        stop
-      </Button> */}
+    <div
+      className={`w-65 h-20 flex items-center justify-center gap-3 px-4 rounded-xl shadow-lg border border-gray-300
+        ${
+          flash
+            ? "bg-red-600 text-white animate-pulse" // Flash red in last 10 sec
+            : "bg-white/80 backdrop-blur-md text-black"
+        }`}
+    >
+      <Hourglass
+        visible={true}
+        height="28"
+        width="28"
+        ariaLabel="hourglass-loading"
+        colors={["#000", "#000"]}
+      />
+      <p className="text-xl font-bold">{convertTime(timeRemaining)}</p>
     </div>
   );
 };

@@ -112,39 +112,20 @@ const Page = () => {
 
   if (!quizStarted && score === null)
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-yellow-200 to-yellow-400 py-10">
-        <Image src="/backdrop.png" width="250" height="250" alt="Quiz Logo" className="mb-4" />
-        <div className="bg-white shadow-xl rounded-3xl p-10 max-w-lg text-center border border-gray-300">
-          
-        <h1 className="text-gray-900 font-extrabold text-4xl mb-4 tracking-wide flex items-center justify-center">
-    📜 Instructions
-  </h1>
-
-  <ul className="text-left mt-4 text-lg text-gray-800 space-y-4">
-    <li className="flex items-center gap-3">
-      <span className="bg-blue-600 text-white font-semibold px-3 py-1 rounded-full">1</span>
-      There are <span className="font-bold">10 questions</span>, 1 mark each.
-    </li>
-    <li className="flex items-center gap-3">
-      <span className="bg-blue-600 text-white font-semibold px-3 py-1 rounded-full">2</span>
-      The questions are <span className="font-bold">MCQs</span>.
-    </li>
-    <li className="flex items-center gap-3">
-      <span className="bg-blue-600 text-white font-semibold px-3 py-1 rounded-full">3</span>
-      <span className="font-bold">No negative markings</span>.
-    </li>
-    <li className="flex items-center gap-3">
-      <span className="bg-blue-600 text-white font-semibold px-3 py-1 rounded-full">4</span>
-      <div>
-        You have <span className="font-bold">2 minutes</span> to answer all questions.<br />
-        The quiz will be <span className="text-red-500 font-semibold">auto-submitted</span> when time runs out.
-      </div>
-    </li>
-    <li className="flex items-center gap-3">
-      <span className="bg-blue-600 text-white font-semibold px-3 py-1 rounded-full">5</span>
-      Score <span className="font-bold">{limit}/10</span> or more to win a <span className="text-green-600 font-semibold">Prize 🎉</span>!
-    </li>
-  </ul>
+      <div className="w-full flex flex-col items-center justify-center bg-[#FCE86C] p-10 min-h-screen">
+        <div className="flex flex-row items-center justify-center w-full bg-white shadow-lg border border-gray-300 rounded-xl p-6 max-w-4xl">
+          <img src="/backdrop.png" alt="SIT Logo" className="h-29 md:h-24 lg:h-36 object-contain" /> 
+        </div>
+        <div className="bg-white shadow-xl rounded-3xl p-10 max-w-4xl text-center border border-gray-300 mt-6">
+          <h1 className="text-[#2E3093] italic font-extrabold text-4xl md:text-5xl">INSTRUCTIONS</h1>
+          <br></br>
+          <ul className="text-left mt-4 text-lg text-gray-800 space-y-5">
+            <li><b>1.</b> There are <b>10</b> questions, <u>1 mark each</u>.</li>
+            <li><b>2.</b> The questions are <b>MCQs</b>.</li>
+            <li><b>3.</b> <b>No negative markings</b>.</li>
+            <li><b>4.</b> You have <b>2 minutes</b> to answer all questions. The quiz will be <b>auto-submitted</b> when time runs out.</li>
+            <li><b>5.</b> Score <b>{limit}/10</b> or more to win a <b>Prize 🎉</b>!</li>
+          </ul>
           <Button
             onClick={() => {
               toast({ title: "All the best for your quiz!" });
