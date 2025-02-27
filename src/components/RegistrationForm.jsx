@@ -112,10 +112,10 @@ const RegistrationForm = () => {
             </SelectTrigger>
             <SelectContent className="absolute z-50 mt-1 bg-white shadow-lg rounded-md border">
               <SelectItem className="bg-white" value="iti">
-                ITI Student
+                HSC ITI Student
               </SelectItem>
               <SelectItem value="diploma">Diploma Student</SelectItem>
-              <SelectItem value="btech">B.Tech / B.E. Student</SelectItem>
+              <SelectItem value="btech">Graduate Engineers</SelectItem>
             </SelectContent>
           </Select>
         </div>
