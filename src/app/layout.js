@@ -15,10 +15,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressContentEditableWarning suppressHydrationWarning>
-      <body className={inter.className + " bg-yellow-300"}>
-        <main className="h-screen w-screen p-3">{children}</main>
-        <Toaster />
-      </body>
+<body className={inter.className + " bg-yellow-300 overflow-hidden"}>
+  <main className="h-screen w-screen p-3 flex justify-center items-center">
+    {children}
+  </main>
+  <Toaster />
+</body>
     </html>
   );
 }
