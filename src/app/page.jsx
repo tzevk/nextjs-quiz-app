@@ -2,9 +2,10 @@
 
 import Image from "next/image";
 import RegistrationForm from "../components/RegistrationForm";
+
 export default function Home() {
   return (
-    <div className="flex flex-col md:flex-row w-full h-screen overflow-hidden">
+    <div className="flex flex-col md:flex-row w-full h-screen">
       {/* Left Side: Logo */}
       <div className="flex justify-center items-center bg-white w-full md:w-1/2 p-8">
         <div className="relative w-[350px] md:w-[450px] h-[200px] md:h-[260px] rounded-3xl flex items-center justify-center shadow-lg border border-gray-300">
